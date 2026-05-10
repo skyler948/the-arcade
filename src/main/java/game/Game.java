@@ -3,12 +3,15 @@ package game;
 import assets.AssetManager;
 import display.Display;
 import scenes.*;
+import score.ScoreManager;
 import settings.Settings;
 
 public class Game {
 
     private Settings settings;
     private Display display;
+
+    private ScoreManager scoreManager;
 
     private SceneManager sceneManager;
 
@@ -23,6 +26,8 @@ public class Game {
         assetManager = new AssetManager();
 
         loadAssets();
+
+        scoreManager = new ScoreManager(this);
 
         sceneManager = new SceneManager();
         sceneManager.setScene(new BreakoutScene(this));
@@ -51,6 +56,10 @@ public class Game {
 
     public Display getDisplay() {
         return display;
+    }
+
+    public ScoreManager getScoreManager() {
+        return scoreManager;
     }
 
     public SceneManager getSceneManager() {

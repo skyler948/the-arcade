@@ -4,6 +4,7 @@ import components.Hitbox;
 import components.RectangleRenderer;
 import game.Game;
 import objects.GameObject;
+import score.Score;
 import time.Timer;
 
 import java.util.ArrayList;
@@ -165,9 +166,13 @@ public class BreakoutScene extends Scene {
 
             ball.getTransform().changeLocalPosition(ballSpeedX * GetFrameTime(), ballSpeedY * GetFrameTime());
 
-            if (lives == 0 || (playing && hasWon())) {
+            if (playing && hasWon()) {
                 playing = false;
                 completions++;
+            }
+            if (lives == 0) {
+                playing = false;
+                game.getScoreManager().addScore(new Score("TMP", score, "breakout"));
             }
         } else {
             if (hasWon() && IsKeyPressed(KEY_SPACE)) {

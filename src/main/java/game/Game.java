@@ -2,8 +2,7 @@ package game;
 
 import assets.AssetManager;
 import display.Display;
-import scenes.SceneManager;
-import scenes.TitleScene;
+import scenes.*;
 import settings.Settings;
 
 public class Game {
@@ -26,7 +25,7 @@ public class Game {
         loadAssets();
 
         sceneManager = new SceneManager();
-        sceneManager.setScene(new TitleScene(this));
+        sceneManager.setScene(new BreakoutScene(this));
 
         settings.setMasterVolume(settings.getMasterVolume());
         settings.setMusicVolume(settings.getMusicVolume());

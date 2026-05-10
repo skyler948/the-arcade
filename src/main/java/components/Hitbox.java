@@ -27,7 +27,7 @@ public class Hitbox extends Component {
 
     @Override
     public void render() {
-        if (debug) {
+        if (debug && parent.isActive()) {
             DrawRectangleLinesEx(getHitbox(), 2, RED);
         }
     }

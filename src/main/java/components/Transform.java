@@ -50,6 +50,14 @@ public class Transform extends Component {
         localPosition.y(localPosition.y() + dy);
     }
 
+    public void setLocalX(float x) {
+        this.localPosition.x(x);
+    }
+
+    public void setLocalY(float y) {
+        this.localPosition.y(y);
+    }
+
     public float getLocalRotation() {
         return localRotation;
     }

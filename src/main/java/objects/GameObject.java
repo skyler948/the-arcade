@@ -58,4 +58,12 @@ public class GameObject {
         this.transform = transform;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
 }

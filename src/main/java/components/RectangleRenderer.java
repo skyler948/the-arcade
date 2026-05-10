@@ -29,8 +29,10 @@ public class RectangleRenderer extends Component {
 
     @Override
     public void render() {
-        DrawRectangleV(parent.getTransform().getLocalPosition(),
-                new Vector2().x(size.x() * parent.getTransform().getLocalScale()).y(size.y() * parent.getTransform().getLocalScale()), color);
+        if (parent.isActive()) {
+            DrawRectangleV(parent.getTransform().getLocalPosition(),
+                    new Vector2().x(size.x() * parent.getTransform().getLocalScale()).y(size.y() * parent.getTransform().getLocalScale()), color);
+        }
     }
 
     public Color getColor() {

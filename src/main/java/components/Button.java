@@ -65,6 +65,8 @@ public class Button extends Component {
 
     @Override
     public void tick() {
+        if (!parent.isActive()) return;
+
         if (CheckCollisionPointRec(game.getDisplay().getMousePosition(), getBounds())) {
             hovered = true;
             pressed = IsMouseButtonPressed(MOUSE_BUTTON_LEFT);
@@ -76,6 +78,8 @@ public class Button extends Component {
 
     @Override
     public void render() {
+        if (!parent.isActive()) return;
+
         DrawRectangleRec(getBounds(), (hovered ? HIGHLIGHT_COLOR : inColor));
         DrawRectangleLinesEx(getBounds(), thickness, outColor);
         DrawText(text, (int) (parent.getTransform().getLocalPosition().x() + ((size.x() / 2.f) - ((MeasureText(text, fontSize)) / 2.f))),

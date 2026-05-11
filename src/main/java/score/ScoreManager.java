@@ -12,7 +12,7 @@ import java.util.regex.PatternSyntaxException;
 
 public class ScoreManager {
 
-    private static final String[] GAME_LIST = {"asteroids", "breakout", "pong"};
+    public static final String[] GAME_LIST = {"breakout", "pong"};
 
     private static final String ROOT = ".application/";
     private static final String SCORES_PATH = ROOT + "scores/";

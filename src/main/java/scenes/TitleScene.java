@@ -79,7 +79,7 @@ public class TitleScene extends Scene {
         tickObjects();
 
         if (gamesButton.isPressed()) {
-            System.out.println("This will open a game selector screen.");
+            game.getSceneManager().setScene(new GameScene(game));
         }
         if (scoresButton.isPressed()) {
             System.out.println("This will display the scores.");

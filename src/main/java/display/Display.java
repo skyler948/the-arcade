@@ -147,7 +147,7 @@ public class Display {
                     sceneManager.getCurrentScene().render();
                     sceneManager.getCurrentScene().ui();
 
-                    DrawFPS(5, 5);
+                    //DrawFPS(5, 5);
                 EndMode2D();
             EndTextureMode();
 

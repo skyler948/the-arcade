@@ -32,6 +32,8 @@ public class Display {
 
     private Vector2 origin;
 
+    private boolean forceClose = false;
+
     public Display(Settings settings) {
         this.settings = settings;
 
@@ -121,6 +123,8 @@ public class Display {
 
     public void updateDisplay(SceneManager sceneManager) {
         while (!WindowShouldClose()) {
+            if (forceClose) break;
+
             sceneManager.getCurrentScene().tick();
 
             if (IsKeyPressed(KEY_F11)) {
@@ -183,6 +187,17 @@ public class Display {
 
     public int getCurrentHeight() {
         return height;
+    }
+
+    public Vector2 getMousePosition() {
+        Vector2 position = GetMousePosition();
+        position.x(position.x() / virtualRatio);
+        position.y(position.y() / virtualRatio);
+        return position;
+    }
+
+    public void forceClose() {
+        forceClose = true;
     }
 
 }

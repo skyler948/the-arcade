@@ -30,7 +30,7 @@ public class Game {
         scoreManager = new ScoreManager(this);
 
         sceneManager = new SceneManager();
-        sceneManager.setScene(new BreakoutScene(this));
+        sceneManager.setScene(new PongScene(this));
 
         settings.setMasterVolume(settings.getMasterVolume());
         settings.setMusicVolume(settings.getMusicVolume());

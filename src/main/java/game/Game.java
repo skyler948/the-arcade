@@ -44,7 +44,7 @@ public class Game {
     }
 
     private void loadAssets() {
-        assetManager.loadTexture("logo");
+        assetManager.loadTexture("gameThumbnails");
         assetManager.loadMusic("sneaky_snitch");
         assetManager.loadSound("coin");
         assetManager.loadFont("arial");

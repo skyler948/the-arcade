@@ -2,6 +2,7 @@ package scenes;
 
 import components.Button;
 import components.RectangleRenderer;
+import components.SpriteRenderer;
 import game.Game;
 import objects.GameObject;
 import score.ScoreManager;
@@ -16,6 +17,8 @@ public class GameScene extends Scene {
     private static final short SQUARE_BUTTON_HORIZONTAL_OFFSET = 230;
     private static final byte SQUARE_BUTTON_VERTICAL_OFFSET = 15;
     private static final short PLAY_BUTTON_WIDTH = 200, PLAY_BUTTON_HEIGHT = 40;
+    private static final short THUMBNAIL_SIZE = 320;
+    private static final byte THUMBNAILS_PER_ROW = 4;
 
     private GameObject back;
     private Button backButton;
@@ -25,6 +28,8 @@ public class GameScene extends Scene {
 
     private GameObject[] play;
     private Button[] playButtons;
+
+    private GameObject[] thumbnails;
 
     private byte page;
 
@@ -80,7 +85,26 @@ public class GameScene extends Scene {
             play[i].setActive(false);
         }
 
+        thumbnails = new GameObject[THUMBNAILS_PER_ROW * THUMBNAILS_PER_ROW];
+
+        int i = 0;
+        for (int x = 0; x < THUMBNAILS_PER_ROW; x++) {
+            for (int y = 0; y < THUMBNAILS_PER_ROW; y++) {
+                thumbnails[i] = new GameObject();
+                thumbnails[i].getTransform().setLocalPosition(getCenterX(THUMBNAIL_SIZE), 140);
+                thumbnails[i].addComponent(new SpriteRenderer(game, "gameThumbnails",
+                        y * THUMBNAIL_SIZE, x * THUMBNAIL_SIZE, THUMBNAIL_SIZE, THUMBNAIL_SIZE));
+                thumbnails[i].addComponent(new RectangleRenderer(THUMBNAIL_SIZE, THUMBNAIL_SIZE, true));
+
+                objects.add(thumbnails[i]);
+
+                thumbnails[i].setActive(false);
+                i++;
+            }
+        }
+
         play[page].setActive(true);
+        thumbnails[page].setActive(true);
 
         page = 0;
     }
@@ -93,15 +117,18 @@ public class GameScene extends Scene {
             game.getSceneManager().setScene(new TitleScene(game));
         }
 
-        if (pageForwardButton.isPressed()) {
+        if (pageForwardButton.isPressed() || IsKeyPressed(KEY_RIGHT) || IsKeyPressed(KEY_D)) {
             play[page].setActive(false);
+            thumbnails[page].setActive(false);
             page = (byte) Math.clamp(++page, 0, play.length - 1);
             play[page].setActive(true);
-        }
-        if (pageBackButton.isPressed()) {
+            thumbnails[page].setActive(true);
+        } else if (pageBackButton.isPressed() || IsKeyPressed(KEY_LEFT) || IsKeyPressed(KEY_A)) {
             play[page].setActive(false);
+            thumbnails[page].setActive(false);
             page = (byte) Math.clamp(--page, 0, play.length - 1);
             play[page].setActive(true);
+            thumbnails[page].setActive(true);
         }
 
         if (playButtons[0].isPressed()) {
@@ -119,6 +146,8 @@ public class GameScene extends Scene {
     @Override
     public void ui() {
         DrawText("Choose a game", (int) getCenterX(MeasureText("Choose a game", 30)), 30, 30, WHITE);
+        DrawText(String.format("%d/%d", (page + 1), (ScoreManager.GAME_LIST.length)),
+                (int) getCenterX(MeasureText(String.format("%d/%d", (page + 1), (ScoreManager.GAME_LIST.length)), 20)), 67, 20, WHITE);
     }
 
     @Override

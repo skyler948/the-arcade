@@ -28,4 +28,14 @@ public class GameScore {
         scores.add(new Score(scoreHolder, score, gameName));
     }
 
+    public String[] getScoresFormatted() {
+        String[] formatted = new String[scores.size()];
+
+        for (int i = 0; i < formatted.length; i++) {
+            formatted[i] = scores.get(i).getScoreFormatted();
+        }
+
+        return formatted;
+    }
+
 }

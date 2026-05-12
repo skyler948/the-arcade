@@ -24,4 +24,8 @@ public class Score {
         return gameName;
     }
 
+    public String getScoreFormatted() {
+        return String.format("%s - %d", scoreHolder, score);
+    }
+
 }

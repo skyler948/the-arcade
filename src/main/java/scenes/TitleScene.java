@@ -82,7 +82,7 @@ public class TitleScene extends Scene {
             game.getSceneManager().setScene(new GameScene(game));
         }
         if (scoresButton.isPressed()) {
-            System.out.println("This will display the scores.");
+            game.getSceneManager().setScene(new ScoreScene(game));
         }
         if (settingsButton.isPressed()) {
             System.out.println("This will open settings.");
